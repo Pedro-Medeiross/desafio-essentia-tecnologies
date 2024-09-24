@@ -79,3 +79,18 @@ export const updateTask = async (req: Request, res: Response): Promise<Response>
         return res.status(500).json({ error: 'Erro ao atualizar tarefa.' });
     }
 };
+
+// Função para pegar todas as tarefas existentes
+export const getAllTasks = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        // Busca todas as tarefas no banco de dados
+        const tasks = await Task.findAll();
+
+        // Retorna uma resposta de sucesso com a lista de tarefas
+        return res.status(200).json({ message: 'Tarefas obtidas com sucesso.', tasks });
+    } catch (err) {
+        // Retorna um erro caso algo dê errado na busca das tarefas
+        console.error('Erro ao buscar tarefas:', err);
+        return res.status(500).json({ error: 'Erro ao buscar tarefas.' });
+    }
+};

@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { createTask, updateTask, deleteTask } from '../crud/taskCrud';
+import { createTask, updateTask, deleteTask, getAllTasks } from '../crud/taskCrud';
 
 // Define o router que será usado para criar as rotas
 const router = Router();
 
 // Define as rotas no router para serem usadas no arquivo principal
+router.get('/all', getAllTasks) // Rota para retornar todas as tarefas existentes
 router.post('/create', createTask); // Rota para criar uma nova tarefa
 router.post('/update', updateTask); // Rota para atualizar uma tarefa existente
 router.post('/delete', deleteTask); // Rota para deletar uma tarefa
